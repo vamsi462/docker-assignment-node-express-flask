@@ -1,5 +1,3 @@
-
-```markdown
 # Docker Multi-Container Application (Node.js & Flask)
 
 A containerized full-stack web application featuring a **Node.js/Express frontend** and a **Python/Flask backend**, orchestrated using **Docker Compose** with custom bridge networking.
@@ -45,69 +43,3 @@ services:
 
 networks:
   vamsikrishna-network: {}
-
-```
-
----
-
-## 📋 Step-by-Step Build & Run Guide
-
-1. **Clone the Repository:**
-```bash
-git clone [https://github.com/vamsi462/docker-assignment-node-express-flask.git](https://github.com/vamsi462/docker-assignment-node-express-flask.git)
-cd docker-assignment-node-express-flask
-
-```
-
-
-2. **Build and Start Containers:**
-```bash
-docker compose up --build
-
-```
-
-
-3. **Access the Application:**
-* Open your browser and go to: `http://localhost:3000`
-
-
-
----
-
-## 🔍 Troubleshooting & Key Resolutions
-
-### **The Inter-Container Connection Issue**
-
-* **The Problem:** Initial requests from the Node.js frontend to the Flask backend resulted in a `connection was refused` error.
-* **Root Cause:** By default, Flask binds to `127.0.0.1` (localhost), which traps the server inside its own container and blocks incoming requests from other containers on the Docker network.
-* **The Fix:** Updated `backend/app.py` to explicitly bind to `0.0.0.0`:
-```python
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
-
-```
-
-
-
----
-
-## ☁️ Docker Hub Image Distribution
-
-Pre-built and tested production-ready images are published and hosted on Docker Hub under the namespace `vamsikrishna19`:
-
-* **Frontend Image:** `vamsikrishna19/frontend:latest`
-* **Backend Image:** `vamsikrishna19/backend:latest`
-
-Fellow developers can run the entire system instantly without manual installation by pulling the images or running `docker compose up` directly.
-
----
-
-## 💡 Why Docker?
-
-* **Eliminates Environment Drift:** Guarantees that code runs identically across local development laptops and remote cloud production servers ("It works on my machine" solved).
-* **Instant Onboarding:** New team members can launch complex multi-container architectures in minutes rather than spending hours configuring dependencies.
-* **Service Isolation:** Multiple services run in clean, separate containers without package or port conflicts.
-
-```
-
-```
