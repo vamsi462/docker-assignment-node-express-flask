@@ -21,7 +21,7 @@ app.post('/submit', async (req, res) => {
             itemHash: req.body.itemHash
         })
         console.log("submitted the form data", response)
-        res.send(`<h3>${response.data.message}</h3><br><a href="/">Go Back</a>`);
+        res.send(`<h3>${response.data.message}</h3><br><a href="/">Return Home</a>`);
     } catch (error) {
         console.log("Tried to send to Flask, but connection was refused.");
         res.send("<h3>Frontend works and request was sent! (Flask is offline).</h3><br><a href='/'>Go Back</a>");
