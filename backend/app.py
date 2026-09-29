@@ -13,7 +13,7 @@ def process_data():
     item_uuid = data.get("itemUuid")
     item_hash = data.get("itemHash")
 
-    print(f"Success! Backend received item: {item_name} (ID: {item_id})")
+    print(f"Success! Backend received item: {item_name} ItemDescription:{item_desc} (ID: {item_id})")
 
     return jsonify(
         {
